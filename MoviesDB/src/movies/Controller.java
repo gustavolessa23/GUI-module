@@ -93,16 +93,24 @@ public class Controller implements ActionListener {
 		    // Do something with the Connection
 			stmt = conn.createStatement();
 			
+			// Store information typed on the text fields
             String movieTitle = main.title.getText();
+            String castMember = main.actor.getText();
+
+            //Check which field was used, and search the complementary information
+            if (movieTitle.length() == 0 && castMember.length() != 0) {
+            		rs = stmt.executeQuery("select * from movies where actor =('"+castMember+"');");
+            } else if (movieTitle.length() != 0 && castMember.length() == 0) {
+            		rs = stmt.executeQuery("select * from movies where title =('"+movieTitle+"');");
+            } else if (movieTitle.length() != 0 && castMember.length() != 0){
+            		JOptionPane.showMessageDialog(main, "One of the fields MUST be blank in order to search."); 
+            }
             
-            rs = stmt.executeQuery("select * from movies where title =('"+movieTitle+"');");
-			
-	          
-	          // loop over results
-	          while(rs.next()) {
-	            String result = rs.getString("actor");
-	              main.actor.setText(result);
-	          } 
+			// Loop over results. For now it will end up showing the last entry
+	        while(rs.next()) {
+	            main.actor.setText(rs.getString("actor"));
+	            main.title.setText(rs.getString("title"));
+	        } 
 	         
 	      } catch (SQLException ex) {
 	          // handle any errors

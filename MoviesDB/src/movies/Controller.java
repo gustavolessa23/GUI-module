@@ -12,14 +12,18 @@ import javax.swing.JOptionPane;
 
 public class Controller implements ActionListener {
 
+	// Declare and instantiate Main class in order to be able to use it's methods and components
 	Main main = null;
 	
+	
+	// Constructor for controller. Takes a Main object as argument.
 	public Controller(Main main) {
 		
 		this.main = main;
 		
 	}
 	
+	// Method to connect and store information in the database, according to what's typed into text fields
 	public void registerInfo() {
 		try {    
 			
@@ -33,14 +37,11 @@ public class Controller implements ActionListener {
 	        Statement stmt = null;
 	        
 	        try {
-	            conn =
-	               DriverManager.getConnection("jdbc:mysql://127.0.0.1/test?user=root&password=");
+	        	
+	            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1/test?user=root&password=");
 
 	            // Do something with the Connection
 	            stmt = conn.createStatement();
-
-	            // or alternatively, if you don't know ahead of time that
-	            // the query will be a SELECT...
 
 	            String movieTitle = main.title.getText();
 	            String castMember = main.actor.getText();
@@ -58,6 +59,7 @@ public class Controller implements ActionListener {
 	        }
 	  }
 	
+	//Action performed for the program to handle actions like clicks.
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("cls")){
@@ -74,6 +76,7 @@ public class Controller implements ActionListener {
 		}
 	}
 
+	// Method used to search for specific data on the DB and retrieve it, printing it to the related text field.
 	private void searchInfo() {
 		try {
 		      

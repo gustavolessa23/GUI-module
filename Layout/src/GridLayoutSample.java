@@ -25,6 +25,7 @@ public class GridLayoutSample extends JFrame {
     this.add(p1);
     
     
+    
     JButton button2 = new JButton("two");
     this.add(button2);
     

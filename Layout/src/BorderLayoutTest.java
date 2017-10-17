@@ -21,6 +21,7 @@ public class BorderLayoutTest extends JFrame {
       top.add(clickme);  
     this.add(top, BorderLayout.LINE_START);
     
+    
     //Second panel
     JPanel bottom = new JPanel();
       JButton bottomButton = new JButton("Bottom Button");

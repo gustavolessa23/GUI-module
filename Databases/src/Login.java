@@ -72,7 +72,7 @@ public class Login extends JFrame implements ActionListener {
       ResultSet rs = null;
       try {
           conn =
-             DriverManager.getConnection("jdbc:mysql://127.0.0.1/test?user=root&password=");
+             DriverManager.getConnection("jdbc:mysql://127.0.0.1/ticketing?user=root&password=");
 
           // Do something with the Connection
           stmt = conn.createStatement();
@@ -83,7 +83,7 @@ public class Login extends JFrame implements ActionListener {
           String un = username.getText();
           String pw = password.getText();
           
-          if (stmt.execute("SELECT * FROM samplelogin WHERE username = '"+un+"' AND password = '"+pw+"'")) {
+          if (stmt.execute("SELECT * FROM users WHERE name = '"+un+"' AND password = '"+pw+"'")) {
               rs = stmt.getResultSet();
           }
 
